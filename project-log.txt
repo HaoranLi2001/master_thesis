@@ -1,0 +1,73 @@
+时间 2026-01-10
+遇到报错：torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 50.00 MiB. GPU 0 has a total capacity of 23.58 GiB of which 4.00 MiB is free. Including non-PyTorch memory, this process has 23.57 GiB memory in use. Of the allocated memory 23.08 GiB is allocated by PyTorch, and 245.87 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+报错原因：超出GPU 24GB 显存
+解决方法：尝试查看显存分配情况 使用“print(torch.cuda.memory_summary(device=None, abbreviated=False))”
+        定位错误在加载教师模型，直接爆现存
+
+        尝试查看使用精度：
+        “# 方式一：查看模型配置中的默认精度
+        print(f"配置精度: {teacher_model.config.torch_dtype}")
+
+        # 方式二：查看模型实际参数的精度（最准）
+        print(f"实际参数精度: {teacher_model.dtype}")
+
+        # 方式三：查看具体的某个权重张量
+        print(f"权重张量精度: {next(teacher_model.parameters()).dtype}")”
+
+        or
+
+        def log_memory(step_name):
+                # 获取当前时间
+                now = datetime.datetime.now().strftime('%H:%M:%S')
+                # 已分配显存 (正在使用的)
+                allocated = torch.cuda.memory_allocated() / 1024**2
+                # 预留显存 (PyTorch 占用的总坑位)
+                reserved = torch.cuda.memory_reserved() / 1024**2
+                # 显存峰值
+                max_mem = torch.cuda.max_memory_allocated() / 1024**2
+                
+                log_str = f"[{now}] {step_name} -> 已分配: {allocated:.2f}MB, 预留: {reserved:.2f}MB, 峰值: {max_mem:.2f}MB\n"
+                
+                # 实时写入文件
+                with open("gpu_memory_log.txt", "a") as f:
+                        f.write(log_str)
+                print(log_str) # 同时在终端打印
+
+        找到原因，使用了float32
+        修改为bf16：
+        “
+        teacher_model = AutoModelForCausalLM.from_pretrained(
+            "Qwen/Qwen2.5-7B-Instruct",
+            dtype=torch.bfloat16, # 比 .half() 更稳
+            device_map="auto"
+        )
+        ”
+
+报错：TypeError: log_softmax() received an invalid combination of arguments - got (Tensor), but expected one of:
+ * (Tensor input, int dim, torch.dtype dtype = None, *, Tensor out = None)
+ * (Tensor input, name dim, *, torch.dtype dtype = None)
+ 原因：少了参数dim
+ 解决：    log_teacher_logit = torch.log_softmax(logit_t,-1)
+
+报错：torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 594.00 MiB. GPU 0 has a total capacity of 23.56 GiB of which 265.94 MiB is free. Process 1819825 has 23.29 GiB memory in use. Of the allocated memory 22.84 GiB is allocated by PyTorch, and 152.00 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+定位：
+    trainer.train(resume_from_checkpoint=False)
+    trainer.save_model("./saves")
+    trainer.save_state()
+推测原因：训练需要更多显存，相比加载模型
+原因：训练时的前向传播计算的中间激活值占用的显存大小与训练数据的batch，sequence长度有关
+尝试解决：减小batch,trainingArguments中修改参数值：
+        per_device_train_batch_size=1,
+        gradient_accumulation_steps=32, 
+        gradient_checkpointing=True, 
+
+报错：
+    “trainer.train(resume_from_checkpoint=False)”
+    RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn
+原因：PyTorch 发现你的 loss（损失值）是一个“死”的数字，它和模型里的参数（Weights）之间的联系断开了。 既然没有联系，PyTorch 就没法通过 backward() 计算梯度来更新模型。
+解决方法1：注释“gradient_checkpointing=True,”，加了这句话会切断参数链，因为告诉他需要时再计算，然后就偷懒不计算
+解决方法2：添加“model.enable_input_require_grads()”，强行贴上需要计算梯度的标签
+
+小问题：
+训练过程极快，十秒结束：“{'train_runtime': 4.3038, 'train_samples_per_second': 2.091, 'train_steps_per_second': 0.697, 'train_loss': 104.19156901041667, 'epoch': 3.0}”
+原因：训练数据太少

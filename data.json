@@ -1,0 +1,17 @@
+[
+    {
+        "instruction": "请翻译下面的句子",
+        "input": "Hello, how are you?",
+        "output": "你好，你怎么样？"
+    },
+    {
+        "instruction": "请将数字转成英文",
+        "input": "123",
+        "output": "one two three"
+    },
+    {
+        "instruction": "总结以下文本的主要观点",
+        "input": "Python 是一种非常流行的编程语言，它易学易用。",
+        "output": "Python 是流行且易用的编程语言。"
+    }
+]

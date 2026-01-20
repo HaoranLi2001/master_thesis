@@ -1,0 +1,45 @@
+[20:06:22] 准备加载教师模型前 -> 已分配: 1889.14MB, 预留: 2002.00MB, 峰值: 1889.14MB
+[20:06:22] 开始从磁盘读取配置 -> 已分配: 1889.14MB, 预留: 2002.00MB, 峰值: 1889.14MB
+[20:07:07] 模型已加载到内存/CPU -> 已分配: 1889.14MB, 预留: 2002.00MB, 峰值: 1889.14MB
+[20:07:25] !!! 发生崩溃 !!! 错误信息: CUDA out of memory. Tried to allocate 50.00 MiB. GPU 0 has a total capacity of 23.58 GiB of which 4.00 MiB is free. Including non-PyTorch memory, this process has 23.57 GiB memory in use. Of the allocated memory 23.08 GiB is allocated by PyTorch, and 245.87 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables) -> 已分配: 23638.13MB, 预留: 23884.00MB, 峰值: 23638.13MB
+[20:15:06] 准备加载教师模型前 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[20:15:06] 开始从磁盘读取配置 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[20:15:51] 模型已加载到内存/CPU -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[20:16:08] !!! 发生崩溃 !!! 错误信息: CUDA out of memory. Tried to allocate 260.00 MiB. GPU 0 has a total capacity of 23.58 GiB of which 86.00 MiB is free. Including non-PyTorch memory, this process has 23.49 GiB memory in use. Of the allocated memory 23.10 GiB is allocated by PyTorch, and 150.90 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables) -> 已分配: 23651.10MB, 预留: 23802.00MB, 峰值: 23651.10MB
+[21:15:34] 准备加载教师模型前 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[21:15:34] 开始从磁盘读取配置 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[21:17:53] 模型已加载到内存/CPU -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[21:17:57] !!! 发生崩溃 !!! 错误信息: CUDA out of memory. Tried to allocate 260.00 MiB. GPU 0 has a total capacity of 23.56 GiB of which 57.94 MiB is free. Process 1779480 has 23.49 GiB memory in use. Of the allocated memory 23.10 GiB is allocated by PyTorch, and 150.90 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables) -> 已分配: 23651.10MB, 预留: 23802.00MB, 峰值: 23651.10MB
+[21:19:32] 准备加载教师模型前 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[21:19:32] 开始从磁盘读取配置 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[21:19:34] 模型已加载到内存/CPU -> 已分配: 14529.64MB, 预留: 14548.00MB, 峰值: 14529.64MB
+[21:19:34] 模型已移动到 GPU -> 已分配: 14529.64MB, 预留: 14548.00MB, 峰值: 14529.64MB
+[21:25:02] 准备加载教师模型前 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[21:25:02] 开始从磁盘读取配置 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[21:25:05] 模型已加载到内存/CPU -> 已分配: 14529.64MB, 预留: 14548.00MB, 峰值: 14529.64MB
+[21:25:05] 模型已移动到 GPU -> 已分配: 14529.64MB, 预留: 14548.00MB, 峰值: 14529.64MB
+[21:25:47] 准备加载教师模型前 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[21:25:47] 开始从磁盘读取配置 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[21:25:50] 模型已加载到内存/CPU -> 已分配: 14529.64MB, 预留: 14548.00MB, 峰值: 14529.64MB
+[21:25:50] 模型已移动到 GPU -> 已分配: 14529.64MB, 预留: 14548.00MB, 峰值: 14529.64MB
+[21:27:18] 准备加载教师模型前 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[21:27:18] 开始从磁盘读取配置 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[21:27:21] 模型已加载到内存/CPU -> 已分配: 14529.64MB, 预留: 14548.00MB, 峰值: 14529.64MB
+[21:27:21] 模型已移动到 GPU -> 已分配: 14529.64MB, 预留: 14548.00MB, 峰值: 14529.64MB
+[21:27:47] 准备加载教师模型前 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[21:27:47] 开始从磁盘读取配置 -> 已分配: 0.00MB, 预留: 0.00MB, 峰值: 0.00MB
+[21:27:50] 模型已加载到内存/CPU -> 已分配: 14529.64MB, 预留: 14548.00MB, 峰值: 14529.64MB
+[21:27:50] 模型已移动到 GPU -> 已分配: 14529.64MB, 预留: 14548.00MB, 峰值: 14529.64MB
+[21:31:40] Load Dataset -> 已分配: 16419.40MB, 预留: 16550.00MB, 峰值: 16419.40MB
+[21:32:20] Load Dataset -> 已分配: 16419.40MB, 预留: 16550.00MB, 峰值: 16419.40MB
+[21:32:20] Set up trainer -> 已分配: 16419.40MB, 预留: 16550.00MB, 峰值: 16419.40MB
+[10:14:10] Load Dataset -> 已分配: 16419.40MB, 预留: 16550.00MB, 峰值: 16419.40MB
+[10:14:10] Set up trainer -> 已分配: 16419.40MB, 预留: 16550.00MB, 峰值: 16419.40MB
+[10:22:48] Load Dataset -> 已分配: 16419.40MB, 预留: 16550.00MB, 峰值: 16419.40MB
+[10:22:48] Set up trainer -> 已分配: 16419.40MB, 预留: 16550.00MB, 峰值: 16419.40MB
+[10:24:06] Load Dataset -> 已分配: 16419.40MB, 预留: 16550.00MB, 峰值: 16419.40MB
+[10:24:06] Set up trainer -> 已分配: 16419.40MB, 预留: 16550.00MB, 峰值: 16419.40MB
+[10:24:53] Load Dataset -> 已分配: 16419.40MB, 预留: 16550.00MB, 峰值: 16419.40MB
+[10:24:53] Set up trainer -> 已分配: 16419.40MB, 预留: 16550.00MB, 峰值: 16419.40MB
+[10:30:11] Load Dataset -> 已分配: 16419.40MB, 预留: 16550.00MB, 峰值: 16419.40MB
+[10:30:11] Set up trainer -> 已分配: 16419.40MB, 预留: 16550.00MB, 峰值: 16419.40MB
