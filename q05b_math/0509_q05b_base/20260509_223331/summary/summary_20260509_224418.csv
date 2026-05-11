@@ -1,0 +1,2 @@
+dataset,version,metric,mode,qwen2.5-05b-instruct
+math,0133d3,accuracy,gen,22.20

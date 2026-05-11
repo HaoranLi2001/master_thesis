@@ -1,0 +1,97 @@
+datasets=[
+    dict(abbr='math',
+        eval_cfg=dict(
+            evaluator=dict(
+                type='opencompass.datasets.MATHEvaluator',
+                version='v2'),
+            pred_postprocessor=dict(
+                type='opencompass.datasets.math_postprocess_v2')),
+        infer_cfg=dict(
+            inferencer=dict(
+                type='opencompass.openicl.icl_inferencer.GenInferencer'),
+            prompt_template=dict(
+                template=dict(
+                    round=[
+                        dict(prompt='\nYou are an expert math assistant. Solve mathematical problems with precision. Provide a concise, step-by-step explanation for each solution to ensure student understanding. Prioritize accuracy and logical consistency.\n\nQuestion: {problem}\nPut your final answer within \\boxed{}.\n                     ',
+                            role='HUMAN'),
+                        ]),
+                type='opencompass.openicl.icl_prompt_template.PromptTemplate'),
+            retriever=dict(
+                type='opencompass.openicl.icl_retriever.ZeroRetriever')),
+        path='opencompass/math',
+        reader_cfg=dict(
+            input_columns=[
+                'problem',
+                ],
+            output_column='solution'),
+        type='opencompass.datasets.MATHDataset'),
+    ]
+math_datasets=[
+    dict(abbr='math',
+        eval_cfg=dict(
+            evaluator=dict(
+                type='opencompass.datasets.MATHEvaluator',
+                version='v2'),
+            pred_postprocessor=dict(
+                type='opencompass.datasets.math_postprocess_v2')),
+        infer_cfg=dict(
+            inferencer=dict(
+                type='opencompass.openicl.icl_inferencer.GenInferencer'),
+            prompt_template=dict(
+                template=dict(
+                    round=[
+                        dict(prompt='\nYou are an expert math assistant. Solve mathematical problems with precision. Provide a concise, step-by-step explanation for each solution to ensure student understanding. Prioritize accuracy and logical consistency.\n\nQuestion: {problem}\nPut your final answer within \\boxed{}.\n                     ',
+                            role='HUMAN'),
+                        ]),
+                type='opencompass.openicl.icl_prompt_template.PromptTemplate'),
+            retriever=dict(
+                type='opencompass.openicl.icl_retriever.ZeroRetriever')),
+        path='opencompass/math',
+        reader_cfg=dict(
+            input_columns=[
+                'problem',
+                ],
+            output_column='solution'),
+        type='opencompass.datasets.MATHDataset'),
+    ]
+math_eval_cfg=dict(
+    evaluator=dict(
+        type='opencompass.datasets.MATHEvaluator',
+        version='v2'),
+    pred_postprocessor=dict(
+        type='opencompass.datasets.math_postprocess_v2'))
+math_infer_cfg=dict(
+    inferencer=dict(
+        type='opencompass.openicl.icl_inferencer.GenInferencer'),
+    prompt_template=dict(
+        template=dict(
+            round=[
+                dict(prompt='\nYou are an expert math assistant. Solve mathematical problems with precision. Provide a concise, step-by-step explanation for each solution to ensure student understanding. Prioritize accuracy and logical consistency.\n\nQuestion: {problem}\nPut your final answer within \\boxed{}.\n                     ',
+                    role='HUMAN'),
+                ]),
+        type='opencompass.openicl.icl_prompt_template.PromptTemplate'),
+    retriever=dict(
+        type='opencompass.openicl.icl_retriever.ZeroRetriever'))
+math_reader_cfg=dict(
+    input_columns=[
+        'problem',
+        ],
+    output_column='solution')
+max_token=2048
+models=[
+    dict(abbr='qwen2.5-05b-instruct',
+        batch_size=1,
+        generation_kwargs=dict(
+            max_tokens=2048,
+            temperature=0.6,
+            top_p=0.95),
+        max_out_len=2048,
+        model_kwargs=dict(
+            gpu_memory_utilization=0.9,
+            max_model_len=2048),
+        path='/mimer/NOBACKUP/groups/naiss2026-4-815/HaoranLi/q05b_1',
+        run_cfg=dict(
+            num_gpus=1),
+        type='opencompass.models.VLLM'),
+    ]
+work_dir='outputs/week15-q05b_math_prompt1/0509_q05b_base/20260509_223331'
