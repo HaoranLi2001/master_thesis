@@ -1,0 +1,91 @@
+datasets=[
+    dict(abbr='gsm8k',
+        eval_cfg=dict(
+            dataset_postprocessor=dict(
+                type='opencompass.datasets.gsm8k_dataset_postprocess'),
+            evaluator=dict(
+                type='opencompass.datasets.Gsm8kEvaluator'),
+            pred_postprocessor=dict(
+                type='opencompass.datasets.gsm8k_postprocess')),
+        infer_cfg=dict(
+            inferencer=dict(
+                max_out_len=1024,
+                type='opencompass.openicl.icl_inferencer.GenInferencer'),
+            prompt_template=dict(
+                template='\nYou are an expert math assistant. Solve mathematical problems with precision. Provide a concise, step-by-step explanation for each solution to ensure student understanding. Prioritize accuracy and logical consistency.\n\nQuestion: {question}\nPut your final answer within \\boxed{}.\n',
+                type='opencompass.openicl.icl_prompt_template.PromptTemplate'),
+            retriever=dict(
+                type='opencompass.openicl.icl_retriever.ZeroRetriever')),
+        path='opencompass/gsm8k',
+        reader_cfg=dict(
+            input_columns=[
+                'question',
+                ],
+            output_column='answer'),
+        type='opencompass.datasets.GSM8KDataset'),
+    ]
+gsm8k_datasets=[
+    dict(abbr='gsm8k',
+        eval_cfg=dict(
+            dataset_postprocessor=dict(
+                type='opencompass.datasets.gsm8k_dataset_postprocess'),
+            evaluator=dict(
+                type='opencompass.datasets.Gsm8kEvaluator'),
+            pred_postprocessor=dict(
+                type='opencompass.datasets.gsm8k_postprocess')),
+        infer_cfg=dict(
+            inferencer=dict(
+                max_out_len=1024,
+                type='opencompass.openicl.icl_inferencer.GenInferencer'),
+            prompt_template=dict(
+                template='\nYou are an expert math assistant. Solve mathematical problems with precision. Provide a concise, step-by-step explanation for each solution to ensure student understanding. Prioritize accuracy and logical consistency.\n\nQuestion: {question}\nPut your final answer within \\boxed{}.\n',
+                type='opencompass.openicl.icl_prompt_template.PromptTemplate'),
+            retriever=dict(
+                type='opencompass.openicl.icl_retriever.ZeroRetriever')),
+        path='opencompass/gsm8k',
+        reader_cfg=dict(
+            input_columns=[
+                'question',
+                ],
+            output_column='answer'),
+        type='opencompass.datasets.GSM8KDataset'),
+    ]
+gsm8k_eval_cfg=dict(
+    dataset_postprocessor=dict(
+        type='opencompass.datasets.gsm8k_dataset_postprocess'),
+    evaluator=dict(
+        type='opencompass.datasets.Gsm8kEvaluator'),
+    pred_postprocessor=dict(
+        type='opencompass.datasets.gsm8k_postprocess'))
+gsm8k_infer_cfg=dict(
+    inferencer=dict(
+        max_out_len=1024,
+        type='opencompass.openicl.icl_inferencer.GenInferencer'),
+    prompt_template=dict(
+        template='\nYou are an expert math assistant. Solve mathematical problems with precision. Provide a concise, step-by-step explanation for each solution to ensure student understanding. Prioritize accuracy and logical consistency.\n\nQuestion: {question}\nPut your final answer within \\boxed{}.\n',
+        type='opencompass.openicl.icl_prompt_template.PromptTemplate'),
+    retriever=dict(
+        type='opencompass.openicl.icl_retriever.ZeroRetriever'))
+gsm8k_reader_cfg=dict(
+    input_columns=[
+        'question',
+        ],
+    output_column='answer')
+max_token=1024
+models=[
+    dict(abbr='qwen2.5-05b-instruct',
+        batch_size=1,
+        generation_kwargs=dict(
+            max_tokens=1024,
+            temperature=0.6,
+            top_p=0.95),
+        max_out_len=1024,
+        model_kwargs=dict(
+            gpu_memory_utilization=0.9,
+            max_model_len=1024),
+        path='/mimer/NOBACKUP/groups/naiss2026-4-815/HaoranLi/q05b',
+        run_cfg=dict(
+            num_gpus=1),
+        type='opencompass.models.VLLM'),
+    ]
+work_dir='outputs/week14-q05b_gsm/0509_q05b_base/20260509_220145'
